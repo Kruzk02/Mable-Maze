@@ -1,21 +1,21 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class MazeScript : MonoBehaviour
 {
+
     private InputAction _moveXAction;
     private InputAction _moveZAction;
     
     private float _currentXRotation;
     private float _currentZRotation;
-    
-    [FormerlySerializedAs("_speed")] [SerializeField]
-    private float speed = 20.0f;
-    
-    [FormerlySerializedAs("_maxTilt")] [SerializeField]
-    private float maxTilt = 30.0f;
+
+    [FormerlySerializedAs("_rigidBody")][SerializeField] private Rigidbody rigidBody;
+    [FormerlySerializedAs("_speed")] [SerializeField] private float speed = 20.0f;
+    [FormerlySerializedAs("_maxTilt")] [SerializeField] private float maxTilt = 30.0f;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class MazeScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        if (rigidBody == null) GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -48,6 +48,11 @@ public class MazeScript : MonoBehaviour
         _moveZAction.Disable();
     }
 
+    private void FixedUpdate()
+    {
+        rigidBody.MoveRotation(Quaternion.Euler(_currentXRotation, 0, _currentZRotation));
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -59,7 +64,5 @@ public class MazeScript : MonoBehaviour
         
         _currentXRotation = Mathf.Clamp(_currentXRotation, -maxTilt, maxTilt);
         _currentZRotation = Mathf.Clamp(_currentZRotation, -maxTilt, maxTilt);
-
-        transform.rotation = Quaternion.Euler(_currentXRotation, 0f, _currentZRotation);
     }
 }
