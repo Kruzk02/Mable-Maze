@@ -800,52 +800,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 517535554}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &1675571688
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1675571689}
-  - component: {fileID: 1675571690}
-  m_Layer: 0
-  m_Name: MazeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1675571689
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675571688}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2038578639}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1675571690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675571688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea3827766ae03c4ab4ee9cd245a4f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  floor: {fileID: 1753681453}
-  outerWall: {fileID: 517535553}
 --- !u!1 &1753681453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,6 +1172,7 @@ GameObject:
   - component: {fileID: 2038578639}
   - component: {fileID: 2038578640}
   - component: {fileID: 2038578641}
+  - component: {fileID: 2038578642}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -1240,7 +1195,6 @@ Transform:
   m_Children:
   - {fileID: 1753681457}
   - {fileID: 517535554}
-  - {fileID: 1675571689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2038578640
@@ -1255,9 +1209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455a5065ec088bb4a874dbf01e723e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazeScript
-  rigidBody: {fileID: 2038578641}
-  speed: 20
-  maxTilt: 30
 --- !u!54 &2038578641
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1285,6 +1236,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2038578642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038578638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d0a8cd7b18f044ab953a4c5b27e11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  rigidBody: {fileID: 2038578641}
+  speed: 20
+  maxTilt: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
