@@ -1209,6 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455a5065ec088bb4a874dbf01e723e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazeScript
+  wallPrefab: {fileID: 2225941150051013837, guid: a6af2e55979c7a546bbfb3b1eaf83d84, type: 3}
 --- !u!54 &2038578641
 Rigidbody:
   m_ObjectHideFlags: 0
