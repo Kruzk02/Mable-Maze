@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1184486351511848925}
   - component: {fileID: 1917728771743366625}
   m_Layer: 0
-  m_Name: WallPrefabZ
+  m_Name: WallPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
