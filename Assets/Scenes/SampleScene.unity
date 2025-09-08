@@ -1031,10 +1031,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2038578639}
-  - component: {fileID: 2038578640}
   - component: {fileID: 2038578641}
+  - component: {fileID: 2038578645}
   - component: {fileID: 2038578642}
   - component: {fileID: 2038578643}
+  - component: {fileID: 2038578644}
+  - component: {fileID: 2038578646}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -1059,20 +1061,6 @@ Transform:
   - {fileID: 517535554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2038578640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2038578638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455a5065ec088bb4a874dbf01e723e60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MazeScript
-  ballPrefab: {fileID: 3981788541372590530, guid: e5837cefcc226ad48b770da54451cab9, type: 3}
-  hole: {fileID: 7915057865472246403, guid: 7d0a89184bbc73b4fa86f5198524fb2e, type: 3}
 --- !u!54 &2038578641
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1128,6 +1116,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   wallPrefab: {fileID: 2225941150051013837, guid: a6af2e55979c7a546bbfb3b1eaf83d84, type: 3}
+--- !u!114 &2038578644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038578638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0bcf6b078377c4888f855542bec9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  hole: {fileID: 7915057865472246403, guid: 7d0a89184bbc73b4fa86f5198524fb2e, type: 3}
+--- !u!114 &2038578645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038578638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21037e12f025179479b8a3b3a2d20f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  holeSpawner: {fileID: 2038578644}
+  wallSpawner: {fileID: 2038578643}
+  ballSpawner: {fileID: 0}
+--- !u!114 &2038578646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038578638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba67572270169e48a73443da199c46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  ballPrefab: {fileID: 3981788541372590530, guid: e5837cefcc226ad48b770da54451cab9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

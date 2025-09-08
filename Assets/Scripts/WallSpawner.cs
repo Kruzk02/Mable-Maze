@@ -11,11 +11,8 @@ public class WallSpawner : MonoBehaviour
 
     private const int MazeBoundaryLimit = 5;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    public void Initialize(Cell[,] cells)
     {
-        var mazeGenerator = new MazeGenerator(7, 7);
-        var cells = mazeGenerator.GetCells();
         SpawnWall(cells);   
     }
 
