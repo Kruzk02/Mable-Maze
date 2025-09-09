@@ -1231,7 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0bcf6b078377c4888f855542bec9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  hole: {fileID: 7915057865472246403, guid: 7d0a89184bbc73b4fa86f5198524fb2e, type: 3}
+  holePrefab: {fileID: 7915057865472246403, guid: 7d0a89184bbc73b4fa86f5198524fb2e, type: 3}
 --- !u!114 &2038578645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,6 +1248,7 @@ MonoBehaviour:
   wallSpawner: {fileID: 2038578643}
   ballSpawner: {fileID: 2038578646}
   scoreUI: {fileID: 2111900484}
+  rigidBody: {fileID: 2038578641}
 --- !u!114 &2038578646
 MonoBehaviour:
   m_ObjectHideFlags: 0

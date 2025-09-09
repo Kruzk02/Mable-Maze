@@ -34,5 +34,14 @@ public class MazeManager : MonoBehaviour
         scoreUI.text = "";
         _counter++;
         scoreUI.text += _counter.ToString();
+        
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+        
+        var mazeGenerator = new MazeGenerator(7,7);
+        var cells = mazeGenerator.GetCells();
+        
+        holeSpawner.Respawn(cells);
+        wallSpawner.Respawn(cells);
+        ballSpawner.Respawn();
     }
 }
