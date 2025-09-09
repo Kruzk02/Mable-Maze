@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,10 +12,20 @@ public class WallSpawner : MonoBehaviour
     private const float HalfCell = 0.5f;
 
     private const int MazeBoundaryLimit = 5;
-    
+
+    private readonly List<GameObject> _walls = new();
     public void Initialize(Cell[,] cells)
     {
         SpawnWall(cells);   
+    }
+
+    public void Respawn(Cell[,] cells)
+    {
+        foreach (var wall in _walls)
+        {
+            Destroy(wall);
+        }
+        SpawnWall(cells);
     }
 
     private void SpawnWall(Cell[,] cells)
@@ -44,5 +56,6 @@ public class WallSpawner : MonoBehaviour
         if (
             wall.transform.position.x <= -MazeBoundaryLimit || wall.transform.position.x >= MazeBoundaryLimit || 
             wall.transform.position.z <= -MazeBoundaryLimit || wall.transform.position.z >= MazeBoundaryLimit) Destroy(wall);   
+        _walls.Add(wall);
     }
 }
