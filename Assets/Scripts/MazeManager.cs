@@ -1,5 +1,5 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MazeManager : MonoBehaviour
 {
@@ -7,7 +7,9 @@ public class MazeManager : MonoBehaviour
     [SerializeField] private HoleSpawner holeSpawner;
     [SerializeField] private WallSpawner wallSpawner;
     [SerializeField] private BallSpawner ballSpawner;
-    
+    [SerializeField] private TextMeshProUGUI scoreUI;
+
+    private int _counter;
     private void Start()
     {
         var mazeGenerator = new MazeGenerator(7,7);
@@ -15,5 +17,22 @@ public class MazeManager : MonoBehaviour
         
         holeSpawner.Initialize(cells);
         wallSpawner.Initialize(cells);
+    }
+
+    private void OnEnable()
+    {
+        TriggerHandler.OnCollisionEnter += HandleTriggerEnter;
+    }
+    
+    private void OnDisable()
+    {
+        TriggerHandler.OnCollisionEnter -= HandleTriggerEnter;
+    }
+
+    private void HandleTriggerEnter(Collider other)
+    {
+        scoreUI.text = "";
+        _counter++;
+        scoreUI.text += _counter.ToString();
     }
 }
