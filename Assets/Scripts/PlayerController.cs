@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [FormerlySerializedAs("_speed"), SerializeField] private float speed = 20.0f;
     [FormerlySerializedAs("_maxTilt"), SerializeField] private float maxTilt = 30.0f;
 
+    private bool _isCollision;
     private void Awake()
     {
         _moveXAction = new InputAction(type: InputActionType.Value);
@@ -32,25 +33,41 @@ public class PlayerController : MonoBehaviour
     {
         _moveXAction.Enable();
         _moveZAction.Enable();
+        
+        TriggerHandler.OnCollisionEnter += HandleTriggerEnter;
     }
 
     private void OnDisable()
     {
         _moveXAction.Disable();
         _moveZAction.Disable();
+        
+        TriggerHandler.OnCollisionEnter -= HandleTriggerEnter;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (rigidBody == null) GetComponent<Rigidbody>();
+        _isCollision = false;
+        if (rigidBody == null) rigidBody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
+        if (_isCollision)
+        {
+            _currentXRotation = 0;
+            _currentZRotation = 0;
+            _isCollision = false;
+        }
         rigidBody.MoveRotation(Quaternion.Euler(_currentXRotation, 0, _currentZRotation));
     }
 
+    private void HandleTriggerEnter(Collider other)
+    {
+        _isCollision = true;
+    }
+    
     // Update is called once per frame
     void Update()
     {

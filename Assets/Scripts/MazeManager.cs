@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -31,11 +32,7 @@ public class MazeManager : MonoBehaviour
 
     private void HandleTriggerEnter(Collider other)
     {
-        scoreUI.text = "";
-        _counter++;
-        scoreUI.text += _counter.ToString();
-        
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+        transform.rotation = Quaternion.identity;
         
         var mazeGenerator = new MazeGenerator(7,7);
         var cells = mazeGenerator.GetCells();
@@ -43,5 +40,9 @@ public class MazeManager : MonoBehaviour
         holeSpawner.Respawn(cells);
         wallSpawner.Respawn(cells);
         ballSpawner.Respawn();
+        
+        scoreUI.text = "";
+        _counter++;
+        scoreUI.text += _counter.ToString();
     }
 }

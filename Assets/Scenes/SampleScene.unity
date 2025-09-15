@@ -1248,7 +1248,6 @@ MonoBehaviour:
   wallSpawner: {fileID: 2038578643}
   ballSpawner: {fileID: 2038578646}
   scoreUI: {fileID: 2111900484}
-  rigidBody: {fileID: 2038578641}
 --- !u!114 &2038578646
 MonoBehaviour:
   m_ObjectHideFlags: 0
