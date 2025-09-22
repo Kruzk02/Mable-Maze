@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         _moveXAction.Enable();
         _moveZAction.Enable();
         
-        TriggerHandler.OnCollisionEnter += HandleTriggerEnter;
+        TriggerHandler.FinishHole += HandleTriggerEnter;
     }
 
     private void OnDisable()
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         _moveXAction.Disable();
         _moveZAction.Disable();
         
-        TriggerHandler.OnCollisionEnter -= HandleTriggerEnter;
+        TriggerHandler.FinishHole -= HandleTriggerEnter;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

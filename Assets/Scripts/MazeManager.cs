@@ -57,12 +57,12 @@ public class MazeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        TriggerHandler.OnCollisionEnter += HandleTriggerEnter;
+        TriggerHandler.FinishHole += HandleTriggerEnter;
     }
     
     private void OnDisable()
     {
-        TriggerHandler.OnCollisionEnter -= HandleTriggerEnter;
+        TriggerHandler.FinishHole -= HandleTriggerEnter;
     }
 
     private void HandleTriggerEnter(Collider other)
