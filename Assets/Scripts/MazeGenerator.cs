@@ -29,6 +29,7 @@ public class MazeGenerator
         }
         
         Generate(_random.Next(_rows), _random.Next(_cols));
+        AddShortcuts();
     }
 
     private void Generate(int x, int z)
@@ -48,6 +49,27 @@ public class MazeGenerator
             {
                 RemoveWall(current, _cell[newX, newZ]);
                 Generate(newX, newZ);
+            }
+        }
+    }
+
+    private void AddShortcuts(float chance = 0.02f)
+    {
+        for (var x = 0; x < _rows; x++)
+        {
+            for (var z = 0; z < _cols; z++)
+            {
+                if (_random.NextDouble() > chance) continue;
+
+                var dir = _random.Next(4);
+
+                var newX = x + _directionX[dir];
+                var newZ = z + _directionZ[dir];
+
+                if (newX < 0 || newZ < 0 || newX >= _rows || newZ >= _cols)
+                    continue;
+
+                RemoveWall(_cell[x, z], _cell[newX, newZ]);
             }
         }
     }

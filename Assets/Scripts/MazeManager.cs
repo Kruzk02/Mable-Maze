@@ -23,7 +23,7 @@ public class MazeManager : MonoBehaviour
         resetButton.gameObject.SetActive(false);
         _timeRemaining = startTime;
         
-        var mazeGenerator = new MazeGenerator(7,7);
+        var mazeGenerator = new MazeGenerator(10,10);
         var cells = mazeGenerator.GetCells();
         
         holeSpawner.Initialize(cells);
