@@ -15,6 +15,9 @@ public class MazeManager : MonoBehaviour
     [SerializeField] private Button resetButton;
     [SerializeField] private float startTime = 30f;
     
+    [SerializeField] private int rows = 10;
+    [SerializeField] private int cols = 10;
+    
     private int _counter;
     private float _timeRemaining;
     private void Start()
@@ -23,7 +26,7 @@ public class MazeManager : MonoBehaviour
         resetButton.gameObject.SetActive(false);
         _timeRemaining = startTime;
         
-        var mazeGenerator = new MazeGenerator(10,10);
+        var mazeGenerator = new MazeGenerator(rows,cols);
         var cells = mazeGenerator.GetCells();
         
         holeSpawner.Initialize(cells);
@@ -69,7 +72,7 @@ public class MazeManager : MonoBehaviour
     {
         transform.rotation = Quaternion.identity;
         
-        var mazeGenerator = new MazeGenerator(7,7);
+        var mazeGenerator = new MazeGenerator(rows,cols);
         var cells = mazeGenerator.GetCells();
         
         holeSpawner.Respawn(cells);
