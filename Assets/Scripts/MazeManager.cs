@@ -1,28 +1,30 @@
 
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MazeManager : MonoBehaviour
 {
     [SerializeField] private MazeController mazeController;
-    
-    [SerializeField] private TextMeshProUGUI scoreUI;
-    [SerializeField] private TextMeshProUGUI timeUI;
-    [SerializeField] private Button resetButton;
+    [SerializeField] private UIController uiController;
+
     [SerializeField] private float startTime = 30f;
+    [SerializeField] private float bonusTime = 30f;
     
     [SerializeField] private int rows = 10;
     [SerializeField] private int cols = 10;
     
     private int _counter;
     private float _timeRemaining;
+    private bool _isGameOver;
+    
     private void Start()
     {
-        resetButton.onClick.AddListener(OnButtonClicked);
-        resetButton.gameObject.SetActive(false);
+        uiController.SetResetAction(RestartGame);
+        uiController.ShowReset(false);
+        
         _timeRemaining = startTime;
+        uiController.UpdateScore(0);
+        uiController.UpdateTime((int)startTime);
 
         mazeController.Generate(rows, cols);
         
@@ -31,26 +33,17 @@ public class MazeManager : MonoBehaviour
 
     private void Update()
     {
+        if (_isGameOver) return;
+        
         if (_timeRemaining > 0)
         {
             _timeRemaining -= Time.deltaTime;
-            var seconds = Mathf.CeilToInt(_timeRemaining);
-            timeUI.text = "";
-            timeUI.text = seconds.ToString();
+            uiController.UpdateTime(Mathf.CeilToInt(_timeRemaining));
         }
         else
         {
-            timeUI.text = "";
-            timeUI.text = "0";
-            Time.timeScale = 0;
-            resetButton.gameObject.SetActive(true);
+            EndGame();
         }
-    }
-
-    private void OnButtonClicked()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        resetButton.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -69,9 +62,22 @@ public class MazeManager : MonoBehaviour
         
         mazeController.Respawn(rows, cols);
         
-        scoreUI.text = "";
-        _timeRemaining += 30;
+        _timeRemaining += bonusTime;
         _counter++;
-        scoreUI.text += _counter.ToString();
+        
+        uiController.UpdateScore(_counter);
+    }
+
+    private void EndGame()
+    {
+        _isGameOver = true;
+        uiController.UpdateTime(0);
+        Time.timeScale = 0;
+        uiController.ShowReset(true);
+    }
+    
+    private static void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
