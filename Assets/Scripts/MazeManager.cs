@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class MazeManager : MonoBehaviour
 {
-
-    [SerializeField] private HoleSpawner holeSpawner;
-    [SerializeField] private WallSpawner wallSpawner;
-    [SerializeField] private BallSpawner ballSpawner;
+    [SerializeField] private MazeController mazeController;
+    
     [SerializeField] private TextMeshProUGUI scoreUI;
     [SerializeField] private TextMeshProUGUI timeUI;
     [SerializeField] private Button resetButton;
@@ -25,12 +23,9 @@ public class MazeManager : MonoBehaviour
         resetButton.onClick.AddListener(OnButtonClicked);
         resetButton.gameObject.SetActive(false);
         _timeRemaining = startTime;
+
+        mazeController.Generate(rows, cols);
         
-        var mazeGenerator = new MazeGenerator(rows,cols);
-        var cells = mazeGenerator.GetCells();
-        
-        holeSpawner.Initialize(cells);
-        wallSpawner.Initialize(cells);
         Time.timeScale = 1;
     }
 
@@ -72,12 +67,7 @@ public class MazeManager : MonoBehaviour
     {
         transform.rotation = Quaternion.identity;
         
-        var mazeGenerator = new MazeGenerator(rows,cols);
-        var cells = mazeGenerator.GetCells();
-        
-        holeSpawner.Respawn(cells);
-        wallSpawner.Respawn(cells);
-        ballSpawner.Respawn();
+        mazeController.Respawn(rows, cols);
         
         scoreUI.text = "";
         _timeRemaining += 30;
