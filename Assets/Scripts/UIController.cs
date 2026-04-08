@@ -1,9 +1,6 @@
-using JetBrains.Annotations;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -16,7 +13,7 @@ public class UIController : MonoBehaviour
     {
         timeUI.text = seconds.ToString();
     }
-    
+
     public void UpdateScore(int score)
     {
         scoreUI.text = score.ToString();
@@ -26,7 +23,7 @@ public class UIController : MonoBehaviour
     {
         resetButton.gameObject.SetActive(show);
     }
-    
+
     public void SetResetAction(UnityAction action)
     {
         resetButton.onClick.RemoveAllListeners();
