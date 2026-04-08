@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -11,18 +10,24 @@ public class PlayerController : MonoBehaviour
     private float _currentXRotation;
     private float _currentZRotation;
 
-    [FormerlySerializedAs("_rigidBody")][SerializeField] private Rigidbody rigidBody;
-    [FormerlySerializedAs("_speed"), SerializeField] private float speed = 20.0f;
-    [FormerlySerializedAs("_maxTilt"), SerializeField] private float maxTilt = 30.0f;
+    [FormerlySerializedAs("_rigidBody")] [SerializeField]
+    private Rigidbody rigidBody;
+
+    [FormerlySerializedAs("_speed"), SerializeField]
+    private float speed = 20.0f;
+
+    [FormerlySerializedAs("_maxTilt"), SerializeField]
+    private float maxTilt = 30.0f;
 
     private bool _isCollision;
+
     private void Awake()
     {
         _moveXAction = new InputAction(type: InputActionType.Value);
         _moveXAction.AddCompositeBinding("Axis")
             .With("Negative", "<Keyboard>/w")
             .With("Positive", "<Keyboard>/s");
-        
+
         _moveZAction = new InputAction(type: InputActionType.Value);
         _moveZAction.AddCompositeBinding("Axis")
             .With("Negative", "<Keyboard>/a")
@@ -33,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         _moveXAction.Enable();
         _moveZAction.Enable();
-        
+
         TriggerHandler.FinishHole += HandleTriggerEnter;
     }
 
@@ -41,7 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         _moveXAction.Disable();
         _moveZAction.Disable();
-        
+
         TriggerHandler.FinishHole -= HandleTriggerEnter;
     }
 
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour
             _currentZRotation = 0;
             _isCollision = false;
         }
+
         rigidBody.MoveRotation(Quaternion.Euler(_currentXRotation, 0, _currentZRotation));
     }
 
@@ -67,13 +73,13 @@ public class PlayerController : MonoBehaviour
     {
         _isCollision = true;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         var rotationX = _moveXAction.ReadValue<float>();
         var rotationZ = _moveZAction.ReadValue<float>();
-        
+
         _currentXRotation += rotationX * speed * Time.deltaTime;
         _currentZRotation -= rotationZ * speed * Time.deltaTime;
 

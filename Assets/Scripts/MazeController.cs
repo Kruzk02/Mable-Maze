@@ -10,11 +10,11 @@ public class MazeController : MonoBehaviour
     {
         var mazeGenerator = new MazeGenerator(rows, cols);
         var cells = mazeGenerator.GetCells();
-        
+
         holeSpawner.Initialize(cells);
         wallSpawner.Initialize(cells);
     }
-    
+
     public void Respawn(int rows, int cols)
     {
         var mazeGenerator = new MazeGenerator(rows, cols);

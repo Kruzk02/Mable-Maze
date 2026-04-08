@@ -4,13 +4,15 @@ using Random = System.Random;
 
 public class HoleSpawner : MonoBehaviour
 {
-    [FormerlySerializedAs("_gloryHole"), SerializeField] private GameObject holePrefab;
-    
+    [FormerlySerializedAs("_gloryHole"), SerializeField]
+    private GameObject holePrefab;
+
     private const float CellSpacing = 0.55f;
     private const float WallOffset = 5.0f;
     private readonly Random _random = new();
 
     private GameObject Hole { get; set; }
+
     public void Initialize(Cell[,] cells)
     {
         CreateHole(cells);

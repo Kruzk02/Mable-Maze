@@ -10,7 +10,7 @@ public class TriggerHandler : MonoBehaviour
     [SerializeField] private AudioClip audioClip;
 
     public static event Action<Collider> FinishHole;
-            
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ball"))
@@ -25,7 +25,7 @@ public class TriggerHandler : MonoBehaviour
 
         if (!(impactStrength > 1f)) return;
         if (audioSource == null) return;
-        
+
         audioSource.volume = Mathf.Clamp01(impactStrength / 10f);
         audioSource.pitch = Random.Range(0.95f, 1.05f) * (1f + impactStrength / 20f);
         StartCoroutine(PlaySfxPart(audioSource, audioClip, 1.2f, 1.5f));

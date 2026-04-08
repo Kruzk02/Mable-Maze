@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class WallSpawner : MonoBehaviour
 {
-    [FormerlySerializedAs("_wallPrefab"), SerializeField] private GameObject wallPrefab;  
-    
+    [FormerlySerializedAs("_wallPrefab"), SerializeField]
+    private GameObject wallPrefab;
+
     private const float WallOffset = 5.0f;
     private const float CellSpacing = 0.55f;
     private const float HalfCell = 0.5f;
@@ -14,9 +14,10 @@ public class WallSpawner : MonoBehaviour
     private const int MazeBoundaryLimit = 5;
 
     private readonly List<GameObject> _walls = new();
+
     public void Initialize(Cell[,] cells)
     {
-        SpawnWall(cells);   
+        SpawnWall(cells);
     }
 
     public void Respawn(Cell[,] cells)
@@ -25,6 +26,7 @@ public class WallSpawner : MonoBehaviour
         {
             Destroy(wall);
         }
+
         SpawnWall(cells);
     }
 
@@ -40,13 +42,20 @@ public class WallSpawner : MonoBehaviour
                 var cell = cells[x, z];
 
                 var pos = new Vector3(x * CellSpacing, 0, z * CellSpacing);
-                
-                if (cell.Top) CreateWall(pos + new Vector3(x - WallOffset, HalfCell, z - HalfCell - WallOffset), Quaternion.identity);
-                if (cell.Bottom) CreateWall(pos + new Vector3(x - WallOffset, HalfCell, z + HalfCell - WallOffset), Quaternion.identity);
-                if (cell.Left) CreateWall(pos + new Vector3(x - HalfCell - WallOffset, HalfCell, z - WallOffset), Quaternion.Euler(0, 90, 0));
-                if (cell.Right) CreateWall(pos + new Vector3(x + HalfCell - WallOffset, HalfCell, z - WallOffset), Quaternion.Euler(0, 90, 0));
+
+                if (cell.Top)
+                    CreateWall(pos + new Vector3(x - WallOffset, HalfCell, z - HalfCell - WallOffset),
+                        Quaternion.identity);
+                if (cell.Bottom)
+                    CreateWall(pos + new Vector3(x - WallOffset, HalfCell, z + HalfCell - WallOffset),
+                        Quaternion.identity);
+                if (cell.Left)
+                    CreateWall(pos + new Vector3(x - HalfCell - WallOffset, HalfCell, z - WallOffset),
+                        Quaternion.Euler(0, 90, 0));
+                if (cell.Right)
+                    CreateWall(pos + new Vector3(x + HalfCell - WallOffset, HalfCell, z - WallOffset),
+                        Quaternion.Euler(0, 90, 0));
             }
-            
         }
     }
 
@@ -54,8 +63,9 @@ public class WallSpawner : MonoBehaviour
     {
         var wall = Instantiate(wallPrefab, position, rotation, transform);
         if (
-            wall.transform.position.x <= -MazeBoundaryLimit || wall.transform.position.x >= MazeBoundaryLimit || 
-            wall.transform.position.z <= -MazeBoundaryLimit || wall.transform.position.z >= MazeBoundaryLimit) Destroy(wall);   
+            wall.transform.position.x <= -MazeBoundaryLimit || wall.transform.position.x >= MazeBoundaryLimit ||
+            wall.transform.position.z <= -MazeBoundaryLimit ||
+            wall.transform.position.z >= MazeBoundaryLimit) Destroy(wall);
         _walls.Add(wall);
     }
 }
