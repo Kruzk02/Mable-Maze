@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ScoreManager
+public static class ScoreManager
 {
   private const string BestScoreKey = "BestScore";
 

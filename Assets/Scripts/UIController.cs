@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreUI;
     [SerializeField] private TextMeshProUGUI timeUI;
+    [SerializeField] private TextMeshProUGUI bestScoreUI;
     [SerializeField] private Button resetButton;
 
     public void UpdateTime(int seconds)
@@ -22,6 +23,16 @@ public class UIController : MonoBehaviour
     public void ShowReset(bool show)
     {
         resetButton.gameObject.SetActive(show);
+    }
+
+    public void ShowBestScore(int bestScore)
+    {
+        bestScoreUI.text = $"Best Score: {bestScore.ToString()}";
+    }
+
+    public void SetBestScoreVisible(bool visible)
+    {
+        bestScoreUI.gameObject.SetActive(visible);
     }
 
     public void SetResetAction(UnityAction action)

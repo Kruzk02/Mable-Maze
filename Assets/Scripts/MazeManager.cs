@@ -24,7 +24,8 @@ public class MazeManager : MonoBehaviour
         _timeRemaining = startTime;
         uiController.UpdateScore(0);
         uiController.UpdateTime((int)startTime);
-
+        uiController.SetBestScoreVisible(false);
+        
         mazeController.Generate(rows, cols);
 
         Time.timeScale = 1;
@@ -69,10 +70,13 @@ public class MazeManager : MonoBehaviour
 
     private void EndGame()
     {
+        ScoreManager.SetBestScore(_counter);
         _isGameOver = true;
         uiController.UpdateTime(0);
         Time.timeScale = 0;
         uiController.ShowReset(true);
+        uiController.SetBestScoreVisible(true);
+        uiController.ShowBestScore(ScoreManager.GetBestScore());
     }
 
     private static void RestartGame()
